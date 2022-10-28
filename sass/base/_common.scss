@@ -1,0 +1,20 @@
+// * {
+//     outline: 1px magenta solid;
+// }
+
+body {
+    font-family: $main-font;
+    font-size: $main-font-size;
+    font-weight: $main-font-weight;
+    line-height: $main-line-height;
+    
+    background-color: aqua;
+}
+
+img, svg {
+    display: block;
+}
+
+.invisible {
+    opacity: 0;
+}

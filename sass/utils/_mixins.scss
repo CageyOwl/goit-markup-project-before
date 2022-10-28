@@ -1,0 +1,23 @@
+@mixin create-button($button-class,
+                    $bg: #fff,
+                    $border: 2px $hover-color,
+                    $bg-hover-color: #fff,
+                    $border-hover-color: #597d00,
+                    $padding: 9px 21px) {
+
+    #{$button-class} {
+        @extend %common-button-styles;
+
+        padding: $padding;
+
+        background: $bg;
+        border: $border solid;
+
+        &:hover,
+        &:focus {
+            background: $bg-hover-color;
+            border-color: $border-hover-color;
+        }
+    }
+
+};

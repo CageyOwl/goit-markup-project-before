@@ -1,0 +1,210 @@
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    max-width: 320px;
+    padding: 32px 20px;
+
+    border-radius: 30px;
+
+    background-color: $modal-bg-color;
+
+    @media screen and (min-width: $tablet-w) {
+        max-width: 458px;
+    }
+}
+
+.modal__close-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    padding: 3px;
+
+    border-radius: 50%;
+    cursor: pointer;
+
+    border: 1px solid $main-bg-color;
+    background-color: $main-bg-color;
+
+    &:hover,
+    &:focus {
+        fill: $hover-color;
+        border-color: $hover-color;
+    }
+}
+
+.modal__close-button-ico {
+    width: 24px;
+    height: 24px;
+}
+
+.modal__fieldset {
+    padding: 0;
+    margin: 0;
+
+    border: none;
+}
+
+.modal__legend {
+    margin: 0 auto 20px;
+
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.modal__input-container {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    &:not(:last-child) {
+        margin-bottom: 24px;
+    }
+}
+
+.modal__input-label {
+    margin-left: 12px;
+    margin-bottom: 2px;
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.modal__text-input {
+    z-index: 1;
+    
+    padding: 13px 11px;
+    border-radius: 30px;
+
+    font-size: 16px;
+    line-height: 1.25;
+
+    border: 1px solid $input-border-normal-color;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.15);
+    outline: none;
+
+    transition: border-color $main-transition-delay $main-transition-func;
+
+    &::placeholder {
+        color: $placeholder-font-color;
+    }
+
+    &:valid {
+        border-color: $hover-color;
+    }
+
+    .modal__fieldset:focus-within:invalid &:invalid {
+        border-color: $warning-color;
+    }
+}
+
+.modal__warning-container {
+    position: absolute;
+    bottom: 20%;
+    transform: translateY(50%);
+
+    display: flex;
+    align-items: center;
+
+    margin-left: 12px;
+    opacity: 1;
+
+    transition: bottom $main-transition-delay $main-transition-func;
+
+    .modal__fieldset:focus-within:invalid .modal__text-input:invalid + & {
+        bottom: -8px;
+    }
+}
+
+.warning-ico {
+    width: 12px;
+    height: 12px;
+}
+
+.modal__warning-text-container {
+    position: relative;
+}
+
+.modal__warning-message {
+    margin: 0 0 0 4px;
+
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.4;
+
+    color: $warning-color;
+
+    &--error {
+        position: absolute;
+        top: 0;
+
+        font-size: 13px;
+    }
+}
+
+.modal__button-container {
+    position: relative;
+}
+
+//(button-class, bg, border, bg-hover-color, border-hover-color, padding)
+@include create-button(".modal__button", #fff, 2px #7eb101, #bbf330, $hover-color, 9px 37px);
+.modal__button {
+    margin: 32px auto 0;
+
+    transition: border-color $main-transition-delay $main-transition-func,
+                background-color $main-transition-delay $main-transition-func;
+
+    .modal__fieldset:focus-within:invalid + .modal__button-container & {
+        border-color: $warning-color;
+    }
+
+    .modal__fieldset:invalid + .modal__button-container &:hover {
+        background-color: #fe6060;
+    }
+
+    .modal__fieldset:valid + .modal__button-container & {
+        background-color: #bbf330;
+    }
+}
+
+.modal__button-warning {
+    z-index: 1;
+
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+
+    min-width: 165px;
+    padding: 16px;
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.17;
+    color: #faedeb;
+
+    text-align: center;
+    border-radius: 30px;
+    background-color: #fe6060; 
+    
+    transition: opacity $main-transition-delay $main-transition-func;
+
+    &::after {
+        content: url("../../img/button-warning-tail.svg");
+
+        position: absolute;
+        bottom: 1px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        width: 23px;
+        height: 7px;
+    }
+}
